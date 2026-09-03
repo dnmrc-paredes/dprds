@@ -1,0 +1,26 @@
+---
+import { skillCategories } from "@/data/skills";
+---
+
+<section id="tools">
+	<h2>My Stack</h2>
+	<div class="skills">
+		{
+			skillCategories.map((cat) => (
+				<div class="skill-group">
+					<div class="skill-group-label">{cat.label}</div>
+					<div class="skills-pills">
+						{cat.items.map((s) => <span class="pill">{s}</span>)}
+					</div>
+				</div>
+			))
+		}
+	</div>
+	<div class="learning">
+		<div class="skill-group-label">Currently learning</div>
+		<div class="skills-pills">
+			<span class="pill">Go</span>
+			<span class="pill">Docker</span>
+		</div>
+	</div>
+</section>

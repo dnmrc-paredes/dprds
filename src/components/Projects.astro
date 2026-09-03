@@ -1,0 +1,23 @@
+---
+import { projects } from "@/data/projects";
+---
+
+<section id="projects">
+	<h2>Projects</h2>
+	<div class="proj-list">
+		{
+			projects.map((p) => (
+				<div class="proj">
+					<div class="proj-head">
+						<h3 class="proj-title">
+							<a href={p.link} target="_blank" rel="noopener">{p.name} ↗</a>
+						</h3>
+						<span class="pill">{p.stack}</span>
+					</div>
+					<p class="proj-description">{p.description}</p>
+					<p class="proj-note">{p.note}</p>
+				</div>
+			))
+		}
+	</div>
+</section>

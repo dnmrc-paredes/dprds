@@ -1,0 +1,72 @@
+---
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import "@/styles/global.css";
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+const siteUrl = "https://dprds.vercel.app/";
+const ogImage = `${siteUrl}favicon.ico`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="canonical" href={siteUrl} />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#0a0a0b" />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content="Dinmarc Paredes" />
+		<meta name="robots" content="index, follow" />
+		<link rel="sitemap" href="/sitemap.xml" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:alt" content="dp logo" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="dprds" />
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content="dp logo" />
+
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Dinmarc Louie E. Paredes",
+			"jobTitle": "Software Engineer",
+			"email": "mailto:dnmrcprds@gmail.com",
+			"telephone": "+639925459629",
+			"url": siteUrl,
+			"knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "Web Frontend Development"]
+		})} />
+
+		<script is:inline>
+			const stored = localStorage.getItem("theme");
+			const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
+			const theme = stored ?? (prefers ? "dark" : "light");
+			document.documentElement.dataset.theme = theme;
+		</script>
+	</head>
+	<body>
+		<Nav />
+		<main class="wrap">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

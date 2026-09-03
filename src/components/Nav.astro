@@ -1,0 +1,86 @@
+---
+---
+
+<header>
+    <div class="wrap nav-inner">
+        <a class="brand" href="/">dprds</a>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        </div>
+    </div>
+</header>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        background: color-mix(in srgb, var(--bg) 80%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+        z-index: 10;
+    }
+
+    .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+    }
+
+    .brand {
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: var(--fg);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+        color: var(--fg);
+    }
+
+    .theme-btn {
+        background: none;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        color: var(--fg);
+        font-size: 1rem;
+        display: grid;
+        place-items: center;
+    }
+</style>
+
+<script>
+    const btn = document.getElementById("themeToggle");
+    const sun = "☀";
+    const moon = "☾";
+    const apply = () => {
+        const t = document.documentElement.dataset.theme;
+        btn.textContent = t === "dark" ? sun : moon;
+    };
+    apply();
+    btn.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem("theme", next);
+        apply();
+    });
+</script>
